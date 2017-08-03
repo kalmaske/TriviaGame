@@ -1,15 +1,15 @@
-$(document).ready(startGame());
-
+$(document).ready(function() {
 //	gobal variables
 var rightAns;
 var wrongAns;
 var ansTime;//time to guess the answer
 var timer;
-var questionsFile;//a file with all the questions in an array
+var questionsFile;//questions in an array
 var questionToAns;//current question
 var questionTime=10;//10sec per question
 var timeToNext=3;//time between questions
 var gameTime;//depends on number of questins
+var counter = 0;
 
 var questionsFileArray = [
 
@@ -75,10 +75,13 @@ var questionsFileArray = [
 	}];
 
 
-$("#startGame").click(startGame());
-function startGame(){
+
+$("#startGame").click(startGame);
+
+function startGame() {
 	//intro
-	$("#intro").html('WELCOME to the Disney Movies Trivia Game; When you start playinng you have only 10 seconds to answer each question .. Have fun and Good Luck! .');
+	// $("#intro").html('WELCOME to the Disney Movies Trivia Game; When you start playinng you have only 10 seconds to answer each question .. Have fun and Good Luck! .');
+	$("#intro").empty();
 	$("#finalAns").hide();
 	$("#choices").hide();
 	$("choices li").empty();
@@ -86,37 +89,43 @@ function startGame(){
 
 	//listners
 	$("#choices .ans").off().on("click", guess);
-	$("#startGame").off().on("click", newQuestion);
+	$("#start").off().on("click", newQuestion);
+		 $('button').hide();
+
 
 	rightAns=0;
 	wrongAns=0;
-
-	questionsFile = questionsFileArray.slice();
+	console.log(questionsFileArray);
+	questionsFile = questionsFileArray.slice(0,1);
 	ansTime = questionTime;
-	gameTime = questionTime.length;
-
+	gameTime = questionTime * questionsFileArray.length;
+	//$("button").empty();
+	// $('button').hide();
+	newQuestion();
 }
 
 
 function newQuestion(){
+	
 	if(rightAns + wrongAns >= gameTime){
 		gameOver();
 	} else {
 		//pick a random question that hasn't been asked already
-		var questionNumber = Math.floor(Math.random() * questionsFile.length);
-		questionToAns = questionsFile[questionNumber];
-		questionsFile.splice(questionNumber, 1);
+		// var questionNumber = Math.floor(Math.random() * questionsFile.length);
+		questionToAns = questionsFileArray[counter].question;
+		
 		resetTimer();
 		$("#finalAns").empty().hide();
-		$("##intro").html(questionToAns.question);
+		$("#intro").html(questionToAns);
 
 		$("#choices").show().find(".ans").each(function(i){
-			$(this).html(questionToAns.answers[i]);
+			$(this).html(questionsFileArray[counter].answers[i]);
 			});
 
 		$("body").css("background-image", "url('"+questionToAns.image+"')");
 		// start Question Timer
-		timer = setInterval(showTimer, 1000);
+		//timer = setInterval(showTimer, 1000);
+		counter++;
 	}
 }
 
@@ -126,7 +135,8 @@ function guess(){
 		printResult("Correct!", "correctResult");
 	} else {
 		wrongAns++;
-		showResult("Wrong. The correct answer was " + questionToAns.answers[questionToAns.rightAns], "wrongResult");
+		var index = questionsFileArray[counter].correctAnswer;
+		printResult("The correct answer is " + questionsFileArray[counter-1].answers[index]);
 	}
 }
 
@@ -142,7 +152,7 @@ function printResult(msg, addThisClass){
 
 }
 
-function ShowTimer(){
+function showTimer(){
 	if (ansTime >= 0){
 		$("#timer").html(ansTime + " seconds left");
 		ansTime--;
@@ -154,7 +164,8 @@ function ShowTimer(){
 function timeIsUp(){
 	wrongAns++;
 	resetTimer();
-	showResult("Time is Up! The correct answer was " + questionToAns.answers[questionToAns.rightAns], "timeIsUp");
+	var index = questionsFileArray[counter].correctAnswer;
+	printResult("Time is Up! The correct answer was " + questionsFileArray[counter].answers[index]+"timeIsUp");
 }
 function resetTimer(){
 	clearInterval(timer);
@@ -170,3 +181,4 @@ function gameOver(){
 	$("#newGame").on("click", startGame);
 }
 
+});
