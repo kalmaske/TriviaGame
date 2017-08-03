@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Disney Movies Trivia Game</title>
+	<title>Disney Movies Trivia Game </title>
 
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 
@@ -10,22 +10,23 @@
 
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-	<script type="text/javascript" src="assets/javascript/jquery-3.1.1.min.js"></script>
+	
 
 </head>
 <body>
-	<h1>Disney Movies Trivia Game<</h1>
+	<h1>Disney Movies Trivia Game</h1>
 
 	<div class = "totalScore" id = "score"></div>
 	<div class = "totalScore" id = "timer"></div>
 
 	<section id="questions">
 		<div class="startGame"></div>
-		<div id="askQuestion"></div>
+		<div id="intro"></div>
+		<button id="startGame">Begin Game</button>
 	</section>
 
 	<section id="choices">
-		<div class="sectionBG"></div>
+		<div class="startGame"></div>
 		<ol>
 		<li class="ans" data-choice=0></li>
 		<li class="ans" data-choice=1></li>
@@ -35,7 +36,7 @@
 		<div id="finalAns"></div>
 	</section>
 
-	<script type="text/javascript" src="assets/javascript/questions-library.js"></script>
+	<script type="text/javascript" src="assets/javascript/questionsFile.js"></script>
 	<script type="text/javascript" src="assets/javascript/app.js"></script>
 	
 </body>
