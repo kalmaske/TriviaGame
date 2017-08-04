@@ -175,9 +175,9 @@ function resetTimer(){
 
 function gameOver(){
 	$("body").css("background-image", 'url("assets/images/BG.png")');
-	var score = (rightAns/gameTime);
+	var score = (rightAns/questionsFileArray.length);
 
-	$("#finalAns").removeClass().html("You got " + rightAns + " questions right and " + numberWrong + " wrong. " + praise + "</div><button id='newGame'>Play Again</button>");
+	$("#finalAns").removeClass().html("You got " + score + " questions right and " + wrongAns + " wrong. " + "</div><button id='newGame'>Play Again</button>");
 	$("#newGame").on("click", startGame);
 }
 

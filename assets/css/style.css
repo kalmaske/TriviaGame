@@ -33,7 +33,7 @@ section {
 
 
 .startGame {
-   /* background-color: #5A0019;*/
+    background-color: lightblue;
     opacity: .85;
     position: absolute;
     top: 0;
@@ -58,8 +58,8 @@ section {
     display: none;
     width: 100%;
     height: 100%;
-    /*background-color: #193441;*/
-    /*color: white;*/
+    background-color: black;
+    color: white;
     padding: 8%;
     box-sizing: border-box;
     font-size: 30px;
