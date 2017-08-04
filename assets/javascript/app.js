@@ -124,7 +124,7 @@ function newQuestion(){
 
 		$("body").css("background-image", "url('"+questionToAns.image+"')");
 		// start Question Timer
-		//timer = setInterval(showTimer, 1000);
+		timer = setInterval(showTimer, 1000);
 		counter++;
 	}
 }
