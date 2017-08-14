@@ -1,49 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Disney Movies Trivia Game </title>
-
-	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-
-	<link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
-
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
-	
-	
-
+    <meta charset="UTF-8">
+    <title>Disney Movies Trivia Game </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
+
 <body>
-	<h1>Disney Movies Trivia Game</h1>
-
-	<div class = "totalScore" id = "score"></div>
-	<div class = "totalScore" id = "timer"></div>
-
-	<section id="questions">
-		<div class="startGame"></div>
-		<div id="intro">
-			<p>
-				WELCOME to the Disney Movies Trivia Game; When you start playinng you have only 10 seconds to answer each question .. Have fun and Good Luck! .
-			</p>
-		</div>
-		<button id="startGame">Begin Game</button>
-	</section>
-
-	<section id="choices">
-		<div class="startGame"></div>
-		<ol>
-		<li class="ans" data-choice=0></li>
-		<li class="ans" data-choice=1></li>
-		<li class="ans" data-choice=2></li>
-		<li class="ans" data-choice=3></li>
-		</ol>
-		<div id="finalAns"></div>
-	</section>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-	<script type="text/javascript" src="assets/javascript/app.js"></script>
-	
+    <h1>Disney Movies Trivia Game</h1>
+    <div class="totalScore" id="score"></div>
+    <div class="totalScore" id="timer"></div>
+    <section id="questions">
+        <div class="startGame"></div>
+        <div id="intro">
+            <p>
+                WELCOME to the Disney Movies Trivia Game; When you start playinng you have only 10 seconds to answer each question .. Have fun and Good Luck! .
+            </p>
+        </div>
+        <button id="startGame">Begin Game</button>
+    </section>
+    <section id="choices">
+        <div class="startGame"></div>
+        <ol>
+            <li class="ans" data-choice=0></li>
+            <li class="ans" data-choice=1></li>
+            <li class="ans" data-choice=2></li>
+            <li class="ans" data-choice=3></li>
+        </ol>
+        <div id="finalAns"></div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>
+
 </html>
