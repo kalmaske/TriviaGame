@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    //	gobal variables
+$(document).ready(function () {
+    //  gobal variables
     var rightAns;
     var wrongAns;
     var ansTime; //time to guess the answer
@@ -10,9 +10,7 @@ $(document).ready(function() {
     var timeToNext = 3; //time between questions
     var gameTime; //depends on number of questins
     var counter = 0;
-
     var questionsFileArray = [
-
         {
             question: "In the Lion King 2, in the song we are one, what comes next 'If there's so much I must be.....' ",
             answers: ["Can you please teach me ?", "Can I still just be me ?", "Must I be everything ?", "How can I just be me ?"],
@@ -74,11 +72,7 @@ $(document).ready(function() {
             image: "assets/images/10.png"
         }
     ];
-
-
-
     $("#startGame").click(startGame);
-
     function startGame() {
         //intro
         // $("#intro").html('WELCOME to the Disney Movies Trivia Game; When you start playinng you have only 10 seconds to answer each question .. Have fun and Good Luck! .');
@@ -87,13 +81,10 @@ $(document).ready(function() {
         $("#choices").hide();
         $("choices li").empty();
         $(".totalScore").empty();
-
         //listners
         $("#choices .ans").off().on("click", guess);
         $("#start").off().on("click", newQuestion);
         $('button').hide();
-
-
         rightAns = 0;
         wrongAns = 0;
         console.log(questionsFileArray);
@@ -104,43 +95,35 @@ $(document).ready(function() {
         // $('button').hide();
         newQuestion();
     }
-
-
     function newQuestion() {
-
         if (counter >= questionsFileArray.length) {
             gameOver();
         } else {
             //pick a random question that hasn't been asked already
             // var questionNumber = Math.floor(Math.random() * questionsFile.length);
             questionToAns = questionsFileArray[counter];
-
             resetTimer();
             $("#finalAns").empty().hide();
             $("#intro").html(questionToAns.question);
-
-            $("#choices").show().find(".ans").each(function(i) {
+            $("#choices").show().find(".ans").each(function (i) {
                 $(this).html(questionsFileArray[counter].answers[i]);
             });
-
             $("body").css("background-image", "url('" + questionToAns.image + "')");
             // start Question Timer
             timer = setInterval(showTimer, 1000);
             counter++;
         }
     }
-
     function guess() {
-        if ($(this).data("choice") == questionToAns.rightAns) {
+        if ($(this).data("choice") == questionToAns.correctAnswer) {
             rightAns++;
             printResult("Correct!", "correctResult");
         } else {
             wrongAns++;
-            var index = questionsFileArray[counter].correctAnswer;
-            printResult("The correct answer is " + questionsFileArray[counter - 1].answers[index]);
+            var index = questionsFileArray[counter-1].correctAnswer;
+            printResult("The correct answer was: " + questionsFileArray[counter-1].answers[index]);
         }
     }
-
     function printResult(msg, addThisClass) {
         resetTimer();
         $("#finalAns")
@@ -150,9 +133,7 @@ $(document).ready(function() {
             .addClass(addThisClass);
         setTimeout(newQuestion, timeToNext * 1000);
         $("#score").html("correct: " + rightAns + " <br> incorrect: " + wrongAns);
-
     }
-
     function showTimer() {
         if (ansTime >= 0) {
             $("#timer").html(ansTime + " seconds left");
@@ -161,26 +142,22 @@ $(document).ready(function() {
             timeIsUp();
         }
     }
-
     function timeIsUp() {
         wrongAns++;
         resetTimer();
-        var index = questionsFileArray[counter].correctAnswer;
-        printResult("Time is Up! The correct answer was " + questionsFileArray[counter].answers[index] + "timeIsUp");
+        
+        var index = questionsFileArray[counter-1].correctAnswer;
+        printResult("Time is Up! The correct answer was: " + questionsFileArray[counter-1].answers[index]);
     }
-
     function resetTimer() {
         clearInterval(timer);
         ansTime = questionTime;
         $("#timer").empty();
     }
-
     function gameOver() {
         $("body").css("background-image", 'url("assets/images/BG.png")');
-        var score = (rightAns / questionsFileArray.length);
-
-        $("#finalAns").removeClass().html("You got " + score + " questions right and " + wrongAns + " wrong. " + "</div><button id='newGame'>Play Again</button>");
+        var score = (100 * (rightAns / questionsFileArray.length)).toFixed(2);
+        $("#finalAns").removeClass().html("You got a " + score + "%!! You got " + rightAns + " questions right and " + wrongAns + " wrong. " + "</div><button id='newGame'>Play Again</button>");
         $("#newGame").on("click", startGame);
     }
-
 });
